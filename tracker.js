@@ -89,7 +89,13 @@ function list() {
               .prompt({
                 type: "input",
                 message: "What is the name of the department you want to add?",
-                name: "department"
+                name: "department",
+                validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
               })
               .then(function(res) {
                 const department = res.department;
@@ -108,17 +114,35 @@ function list() {
                 {
                   type: "input",
                   message: "What is the job title you want to add?",
-                  name: "title"
+                  name: "title",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
                 },
                 {
-                  type: "input",
+                  type: "list",
                   message: "What is the salary for this position?",
-                  name: "salary"
+                  name: "salary",
+                  choices: [
+                    "80000.00",
+                    "75000.00",
+                    "50000.00",
+                    "24000.00"
+                  ],
                 },
                 {
-                  type: "input",
-                  message: "What is the department ID for this position?",
-                  name: "departmentID"
+                  type: "list",
+                  message: "Select department ID for this position",
+                  name: "departmentID",
+                  choices: [
+                    "123",
+                    "456",
+                    "789",
+                    "430"
+                  ],
                 }
               ])
               .then(function(res) {
@@ -140,22 +164,46 @@ function list() {
                 {
                   type: "input",
                   message: "What is the employee's first name?",
-                  name: "firstName"
+                  name: "firstName",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
                 },
                 {
                   type: "input",
                   message: "What is the employee's last name?",
-                  name: "lastName"
+                  name: "lastName",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
                 },
                 {
                   type: "number",
                   message: "What is the employee's role ID? (Please enter numbers only)",
-                  name: "roleID"
+                  name: "roleID",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
                 },
                 {
                   type: "number",
                   message: "What is the employee's manager ID? (Please enter numbers only)",
-                  name: "managerID"
+                  name: "managerID",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
                 }
               ])
               .then(function(res) {
