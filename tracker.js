@@ -3,15 +3,16 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
-const dotenv = require('dotenv').config();
+// using dotenv to hide credentials
+const dotenv = require('dotenv');
+dotenv.config();
 
-// Establish server & PORT
-
+//please use your own login credentials to access this project
 const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "process.env.DB_PASS",
+  password: process.env.PASSWORD,
   database: "tracker_DB"
 });
 
@@ -20,6 +21,8 @@ connection.connect(function(err) {
   list();
 });
 
+
+//Main Menu
 function list() {
     inquirer
       .prompt({
@@ -43,6 +46,7 @@ function list() {
               viewInfo();
               break;
         case "Exit":
+          console.log("Good-bye");
             connection.end();
             process.exit();
             break;
@@ -50,6 +54,7 @@ function list() {
           });  
         }
 
+//Add Info         
      function addInfo (){
         inquirer
         .prompt({
@@ -77,6 +82,7 @@ function list() {
                 addEmployee();
                 break;
                 case "Exit":
+                  console.log("Good-bye");
                     connection.end();
                     process.exit();
                     break;
@@ -184,26 +190,27 @@ function list() {
                 }
                 },
                 {
-                  type: "number",
-                  message: "What is the employee's role ID? (Please enter numbers only)",
+                  type: "list",
+                  message: "What is the employee's role ID?",
                   name: "roleID",
-                  validate: (answer) => {
-                    if(answer !== "") {
-                        return true
-                    }
-                    return "Please do not leave entry blank"
-                }
+                  choices: [
+                    "12",
+                    "14",
+                    "16",
+                    "20"
+                  ]
                 },
                 {
-                  type: "number",
-                  message: "What is the employee's manager ID? (Please enter numbers only)",
+                  type: "list",
+                  message: "What is the employee's manager ID? (0 is for no manager)",
                   name: "managerID",
-                  validate: (answer) => {
-                    if(answer !== "") {
-                        return true
-                    }
-                    return "Please do not leave entry blank"
-                }
+                  choices: [
+                    "120",
+                    "240",
+                    "480",
+                    "190",
+                    "0"
+                  ]
                 }
               ])
               .then(function(res) {
@@ -219,7 +226,163 @@ function list() {
                 });
               });
           }
-          
 
+//View Info
+function viewInfo (){
+  inquirer
+  .prompt({
+    type: "list",
+    name: "option",
+    message: "What would you like to do?",
+    choices: [
+      "View Department",
+      "View Role",
+      "View Employee",
+      "Update Employee",
+      "Exit"
+    ]
+  })
+
+  .then(function(result) {
+      console.log("You entered: " + result.option);
+      switch (result.option) {
+        case "View Department":
+          viewDepartment();
+          break;
+        case "View Role":
+          viewRole();
+          break;
+        case "View Employee":
+          viewEmployee();
+          break;
+        case "Update Employee":
+            updateEmployee();
+            break;  
+          case "View All":
+            viewAll();
+            break;  
+          case "Exit":
+              console.log("Good-bye");
+              connection.end();
+              process.exit();
+              break;
+              }
+        });
+    }     
+
+
+function viewDepartment() {
+  const query = "SELECT * FROM department";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    list();
+  });
+}
+
+function viewRole() {
+  const query = "SELECT * FROM role";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    list();
+  });
+}
+
+function viewEmployee() {
+  const query = "SELECT * FROM employee";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    list();
+  });
+}
+          function addEmployee() {
+            inquirer
+              .prompt([
+                {
+                  type: "input",
+                  message: "What is the employee's first name?",
+                  name: "firstName",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
+                },
+                {
+                  type: "input",
+                  message: "What is the employee's last name?",
+                  name: "lastName",
+                  validate: (answer) => {
+                    if(answer !== "") {
+                        return true
+                    }
+                    return "Please do not leave entry blank"
+                }
+                },
+                {
+                  type: "list",
+                  message: "What is the employee's role ID?",
+                  name: "roleID",
+                  choices: [
+                    "12",
+                    "14",
+                    "16",
+                    "20"
+                  ]
+                },
+                {
+                  type: "list",
+                  message: "What is the employee's manager ID? (0 is for no manager)",
+                  name: "managerID",
+                  choices: [
+                    "120",
+                    "240",
+                    "480",
+                    "190",
+                    "0"
+                  ]
+                }
+              ])
+              .then(function(res) {
+                const firstName = res.firstName;
+                const lastName = res.lastName;
+                const roleID = res.roleID;
+                const managerID = res.managerID;
+                const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUE("${firstName}", "${lastName}", "${roleID}", "${managerID}")`;
+                connection.query(query, function(err, res) {
+                  if (err) throw err;
+                  console.table(res);
+                  list();
+                });
+              });
+          }
+
+          function updateEmployee() {
+            const query = "SELECT id, first_name, last_name, role_id  FROM employee";
+            connection.query(query, function(err, res) {
+              if (err) throw err;
+              console.table(res);
+              {
+                inquirer.prompt({
+                  type: "input",
+                  message: "Which employee needs to be updated? (please use number from id column only)",
+                  name: "employee"
+                });
+              }
+            });
+          }          
+
+/*connection.query(`UPDATE employee SET role_id = ${roleID} WHERE id = ${employeeID}`, (err, res) => {
+  if(err) return err;
+
+  // confirm update employee
+  console.log(`\n ${answer.employee} ROLE UPDATED TO ${answer.role}...\n `);
+
+  // back to main menu
+  list();
+}); */          
 
 
