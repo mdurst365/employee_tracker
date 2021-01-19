@@ -33,7 +33,6 @@ Build a command-line application that at a minimum allows the user to:
 - [x] Update employee roles
 
 ## Minimum Requirements
-
 - [x] Functional application.
 - [x] GitHub repository with a unique name and a README describing the project.
 
@@ -42,3 +41,7 @@ Build a command-line application that at a minimum allows the user to:
 - [x] Add departments, roles, employees
 - [x] View departments, roles, employees
 - [x] Update employee roles
+
+## View
+[link to animated gif](https://github.com/mdurst365/employee_tracker/blob/main/employee_tracker.gif)
+
