@@ -1,6 +1,6 @@
 # Unit 12 MySQL Homework: Employee Tracker
 
-Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. In this homework assignment, your challenge is to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.
+This is a homework assignment for OSU coding bootcamp. It is the first project that we have done that uses MySQL and Inquirer to create a command line interface with the intention that this is an app that could be used to keep track of company and employee information. I admit that I struggled with this assignment, I feel that the tutor pointed me in the right direction, but the recommended fixes would require extensive rework and I don't have enough time before the deadline to accomplish a complete restart. I will need a lot more practice before I feel confident with CRUD operations in Inquirer/MySQL, but I did learn a lot while working on this project.
 
 ## Instructions
 
@@ -8,71 +8,37 @@ Design the following database schema containing three tables:
 
 * **DEPARTMENT**:
 
-- [ ]  * **id** - INT PRIMARY KEY
-- [ ]  * **name** - VARCHAR(30) to hold department name
+- [x]  * **id** - INT PRIMARY KEY
+- [x]  * **name** - VARCHAR(30) to hold department name
 
 * **ROLE**:
 
-- [ ]  * **id** - INT PRIMARY KEY
-- [ ]  * **title** -  VARCHAR(30) to hold role title
-- [ ]  * **salary** -  DECIMAL to hold role salary
-- [ ]  * **department_id** -  INT to hold reference to department role belongs to
+- [x]  * **id** - INT PRIMARY KEY
+- [x]  * **title** -  VARCHAR(30) to hold role title
+- [x]  * **salary** -  DECIMAL to hold role salary
+- [x]  * **department_id** -  INT to hold reference to department role belongs to
 
 * **EMPLOYEE**:
 
-- [ ]  * **id** - INT PRIMARY KEY
-- [ ]  * **first_name** - VARCHAR(30) to hold employee first name
-- [ ]  * **last_name** - VARCHAR(30) to hold employee last name
-- [ ]  * **role_id** - INT to hold reference to role employee has
-- [ ]  * **manager_id** - INT to hold reference to another employee that manages the employee being Created. This field may be null if the employee has no manager
+- [x]  * **id** - INT PRIMARY KEY
+- [x]  * **first_name** - VARCHAR(30) to hold employee first name
+- [x]  * **last_name** - VARCHAR(30) to hold employee last name
+- [x]  * **role_id** - INT to hold reference to role employee has
+- [x]  * **manager_id** - INT to hold reference to another employee that manages the employee being Created. This field may be null if the employee has no manager
   
 Build a command-line application that at a minimum allows the user to:
 
-- [ ] Add departments, roles, employees
-- [ ] View departments, roles, employees
-- [ ] Update employee roles
-
-Bonus points if you're able to:
-
-- [ ] Update employee managers
-- [ ] View employees by manager
-- [ ] Delete departments, roles, and employees
-- [ ] View the total utilized budget of a department -- ie the combined salaries of all employees in that department
-
-How do you deliver this? Here are some guidelines:
-
-* Use the [MySQL](https://www.npmjs.com/package/mysql) NPM package to connect to your MySQL database and perform queries.
-
-* Use [InquirerJs](https://www.npmjs.com/package/inquirer/v/0.2.3) NPM package to interact with the user via the command-line.
-
-* Use [console.table](https://www.npmjs.com/package/console.table) to print MySQL rows to the console. There is a built-in version of `console.table`, but the NPM package formats the data a little better for our purposes.
-
-* You may wish to have a separate file containing functions for performing specific SQL queries you'll need to use. Could a constructor function or a class be helpful for organizing these?
-
-* You will need to perform a variety of SQL JOINS to complete this assignment, and it's recommended you review the week's activities if you need a refresher on this.
+- [x] Add departments, roles, employees
+- [x] View departments, roles, employees
+- [x] Update employee roles
 
 ## Minimum Requirements
 
-* Functional application.
-
-* GitHub repository with a unique name and a README describing the project.
-
-* The command-line application should allow users to:
-
-- [ ] Add departments, roles, employees
-- [ ] View departments, roles, employees
-- [ ] Update employee roles
-
-## Bonus
+- [x] Functional application.
+- [x] GitHub repository with a unique name and a README describing the project.
 
 * The command-line application should allow users to:
-- [ ] Update employee managers
-- [ ] View employees by manager
-- [ ] Delete departments, roles, and employees
-- [ ] View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
-## Submission on BCS
-
-You are required to submit the following:
-* The URL of the GitHub repository
-* A video demonstrating the entirety of the app's functionality 
+- [x] Add departments, roles, employees
+- [x] View departments, roles, employees
+- [x] Update employee roles (eh, sort of)
