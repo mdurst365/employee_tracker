@@ -43,5 +43,5 @@ Build a command-line application that at a minimum allows the user to:
 - [x] Update employee roles
 
 ## Animated Gif
-[Animated Gif- Demo of App](https://github.com/mdurst365/employee_tracker/blob/main/employee_tracker.gif)
+[Link to Demo of App](https://github.com/mdurst365/employee_tracker/blob/main/employee_tracker.gif)
 
