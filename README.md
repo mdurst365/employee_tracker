@@ -42,6 +42,6 @@ Build a command-line application that at a minimum allows the user to:
 - [x] View departments, roles, employees
 - [x] Update employee roles
 
-## View
-[link to animated gif](https://github.com/mdurst365/employee_tracker/blob/main/employee_tracker.gif)
+## Animated Gif
+[Animated Gif- Demo of App](https://github.com/mdurst365/employee_tracker/blob/main/employee_tracker.gif)
 
